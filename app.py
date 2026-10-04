@@ -15,6 +15,10 @@ st.markdown("""
     background-color: #1B1D1F;
     color: #F1F1F1;
 }
+[data-testid="stForm"] {
+    border: none;
+    padding: 0;
+}
 h1, h2, h3, p, div, label, span {
     font-family: 'Space Grotesk', sans-serif !important;
 }
@@ -137,21 +141,24 @@ if not api_key:
             st.rerun()
     st.stop()  # Halt rendering the rest of the app until the key is provided
 
-st.markdown("<div class='section-title'>Your Watchlist (Optional)</div>", unsafe_allow_html=True)
-url = st.text_input(
-    "Paste a Letterboxd List or Watchlist URL (Optional):", 
-    placeholder="https://letterboxd.com/username/watchlist/ (Leave blank for global trends)", 
-    label_visibility="collapsed"
-)
+with st.form(key="movie_form", clear_on_submit=False):
+    st.markdown("<div class='section-title'>Your Watchlist (Optional)</div>", unsafe_allow_html=True)
+    url = st.text_input(
+        "Paste a Letterboxd List or Watchlist URL (Optional):", 
+        placeholder="https://letterboxd.com/username/watchlist/ (Leave blank for global trends)", 
+        label_visibility="collapsed"
+    )
+    
+    st.markdown("<div class='section-title'>Your Vibe</div>", unsafe_allow_html=True)
+    mood = st.text_input(
+        "What's your mood tonight?",
+        placeholder="e.g., Brain fried from work, or 'bhai aaj kuch rula dene wali sci-fi bata'",
+        label_visibility="collapsed"
+    )
+    
+    submit_button = st.form_submit_button("Pick My Movie", type="primary")
 
-st.markdown("<div class='section-title'>Your Vibe</div>", unsafe_allow_html=True)
-mood = st.text_input(
-    "What's your mood tonight?",
-    placeholder="e.g., Brain fried from work, or 'bhai aaj kuch rula dene wali sci-fi bata'",
-    label_visibility="collapsed"
-)
-
-if st.button("Pick My Movie", type="primary"):
+if submit_button:
     if not api_key:
         st.error("Server Configuration Error: API key is missing from the backend.")
     elif not mood:
