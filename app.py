@@ -112,9 +112,13 @@ h1, h2, h3, p, div, label, span {
 st.markdown("<h1 class='main-title'>Log It Already</h1>", unsafe_allow_html=True)
 st.markdown("<div class='subtitle'>For the cinephile with 500 movies in their watchlist and 45 minutes of decision paralysis.</div>", unsafe_allow_html=True)
 
-# Load the key silently in the background
+# Load the API key
+api_key = ""
 key_file_path = "saved_key.txt"
-if os.path.exists(key_file_path):
+
+if "OLLAMA_API_KEY" in st.secrets:
+    api_key = st.secrets["OLLAMA_API_KEY"]
+elif os.path.exists(key_file_path):
     with open(key_file_path, "r") as f:
         api_key = f.read().strip()
 else:
