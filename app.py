@@ -130,7 +130,7 @@ url = st.text_input(
 st.markdown("<div class='section-title'>Your Vibe</div>", unsafe_allow_html=True)
 mood = st.text_input(
     "What's your mood tonight?",
-    placeholder="e.g., Brain fried from work, I need a visually stunning sci-fi that won't make me think too hard.",
+    placeholder="e.g., Brain fried from work, or 'bhai aaj kuch rula dene wali sci-fi bata'",
     label_visibility="collapsed"
 )
 
@@ -167,6 +167,7 @@ if st.button("Pick My Movie", type="primary"):
             {watchlist_text}
             
             Their current mood is: "{mood}"
+            (Note: The user's mood might be written in Hinglish - a mix of Hindi and English. Please interpret it accurately. If their mood is in Hinglish, feel free to write the ABOUT section in a natural, conversational Hinglish tone as well).
             
             Based ONLY on the movies in their watchlist, pick the absolute best movie for them to watch right now. 
             Format your response EXACTLY like this and include nothing else:
@@ -178,6 +179,7 @@ if st.button("Pick My Movie", type="primary"):
             prompt = f"""You are an expert film curator. A user is looking for a movie recommendation.
             
             Their current mood is: "{mood}"
+            (Note: The user's mood might be written in Hinglish - a mix of Hindi and English. Please interpret it accurately. If their mood is in Hinglish, feel free to write the ABOUT section in a natural, conversational Hinglish tone as well).
             
             Pick the absolute best, highly acclaimed or currently trending movie for them to watch right now. 
             Format your response EXACTLY like this and include nothing else:
