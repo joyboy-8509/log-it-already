@@ -184,7 +184,11 @@ if st.button("Pick My Movie", type="primary"):
             {watchlist_text}
             
             Their current mood is: "{mood}"
-            (Note: The user's mood might be written in Hinglish - a mix of Hindi and English. Please interpret it accurately. If their mood is in Hinglish, feel free to write the ABOUT section in a natural, conversational Hinglish tone as well).
+            
+            CRITICAL LANGUAGE INSTRUCTION:
+            Analyze the language of the user's mood above. 
+            - If the mood is written in Hinglish (a mix of Hindi and English) or Hindi, you MUST write your "ABOUT" explanation entirely in a natural, conversational Hinglish tone.
+            - If the mood is written in standard English, you MUST write your "ABOUT" explanation entirely in English.
             
             Based ONLY on the movies in their watchlist, pick the absolute best movie for them to watch right now. 
             Format your response EXACTLY like this and include nothing else:
@@ -196,7 +200,11 @@ if st.button("Pick My Movie", type="primary"):
             prompt = f"""You are an expert film curator. A user is looking for a movie recommendation.
             
             Their current mood is: "{mood}"
-            (Note: The user's mood might be written in Hinglish - a mix of Hindi and English. Please interpret it accurately. If their mood is in Hinglish, feel free to write the ABOUT section in a natural, conversational Hinglish tone as well).
+            
+            CRITICAL LANGUAGE INSTRUCTION:
+            Analyze the language of the user's mood above. 
+            - If the mood is written in Hinglish (a mix of Hindi and English) or Hindi, you MUST write your "ABOUT" explanation entirely in a natural, conversational Hinglish tone.
+            - If the mood is written in standard English, you MUST write your "ABOUT" explanation entirely in English.
             
             Pick the absolute best, highly acclaimed or currently trending movie for them to watch right now. 
             Format your response EXACTLY like this and include nothing else:
