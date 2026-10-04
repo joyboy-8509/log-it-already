@@ -1,0 +1,35 @@
+### 🤖 What I have already done (The AI's Role)
+1. **Wrote the App:** I created `app.py` in your folder (`C:\Users\kumaw\source_codes\gemini\disc_bot_hacktober_1.0`).
+2. **Configured for Local AI:** I stripped out the cloud APIs and wrote the code to specifically look for a local AI engine running on your laptop. 
+3. **Standby Support:** Once you launch it, if you hit any weird errors or bugs, I will debug and rewrite the code for you.
+
+---
+
+### 🧑‍💻 What you need to do right now (Your Role)
+
+**Step 1: Install the AI Engine (Ollama)**
+* Ollama has been installed on your Windows machine via PowerShell!
+
+**Step 2: Download the Gemma Model**
+* Open a new PowerShell/Terminal window.
+* Run this exact command to download Google's open-weight model to your computer (it's about 1.6 GB):
+  ```powershell
+  ollama pull gemma2:2b
+  ```
+  *(Wait for this to hit 100% before moving on).*
+
+**Step 3: Install the Python Libraries**
+* In your terminal, install the tools our script needs to create the website and talk to Ollama:
+  ```powershell
+  pip install streamlit ollama
+  ```
+
+**Step 4: Launch the App**
+* Navigate to your project folder:
+  ```powershell
+  cd C:\Users\kumaw\source_codes\gemini\disc_bot_hacktober_1.0
+  ```
+* Start the web app:
+  ```powershell
+  streamlit run app.py
+  ```
