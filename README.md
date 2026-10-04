@@ -1,4 +1,5 @@
-
+![My Current Top 4](assets/top4.png)
+### My Current Top 4
 
 # 🍿 Log It Already (Hacktoberfest Weekend Challenge: Build for a Friend)
 
