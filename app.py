@@ -244,33 +244,39 @@ if submit_button:
                 suggested_title = title_match.group(1).strip().replace("*", "").replace('"', "") if title_match else "Movie Pick"
                 about_text = about_match.group(1).strip() if about_match else raw_text
                 
-                # Try to exact-match the scraped list if it exists
+                poster_url = "https://via.placeholder.com/300x450?text=No+Poster"
+                
+                # Try to exact-match the scraped list and use its verified poster
                 if movies_dict:
-                    for m_title in movies_dict.keys():
+                    for m_title, m_poster in movies_dict.items():
                         if suggested_title.lower() in m_title.lower() or m_title.lower() in suggested_title.lower():
                             suggested_title = m_title
+                            if m_poster and "via.placeholder.com" not in m_poster:
+                                # Upscale Letterboxd thumbnails to high-res poster size
+                                poster_url = re.sub(r'-0-\d+-0-\d+-crop', '-0-600-0-900-crop', m_poster)
                             break
                 
-                poster_url = "https://via.placeholder.com/300x450?text=No+Poster"
-                slug = re.sub(r'[^a-z0-9]+', '-', suggested_title.lower()).strip('-')
-                
-                try:
-                    movie_res = requests.get(f"https://letterboxd.com/film/{slug}/", headers={'User-Agent': 'Mozilla/5.0'}, timeout=15)
-                    if movie_res.status_code == 200:
-                        movie_soup = BeautifulSoup(movie_res.text, 'html.parser')
-                        
-                        script_tag = movie_soup.find('script', type='application/ld+json')
-                        if script_tag:
-                            match = re.search(r'"image"\s*:\s*"([^"]+)"', script_tag.string)
-                            if match:
-                                poster_url = match.group(1)
-                        
-                        if poster_url == "https://via.placeholder.com/300x450?text=No+Poster":
-                            og_image = movie_soup.find('meta', property='og:image')
-                            if og_image and og_image.has_attr('content'):
-                                poster_url = og_image['content']
-                except:
-                    pass
+                # If we still don't have a poster (e.g. global fallback), try guessing the Letterboxd slug
+                if poster_url == "https://via.placeholder.com/300x450?text=No+Poster":
+                    slug = re.sub(r'[^a-z0-9]+', '-', suggested_title.lower()).strip('-')
+                    
+                    try:
+                        movie_res = requests.get(f"https://letterboxd.com/film/{slug}/", headers={'User-Agent': 'Mozilla/5.0'}, timeout=15)
+                        if movie_res.status_code == 200:
+                            movie_soup = BeautifulSoup(movie_res.text, 'html.parser')
+                            
+                            script_tag = movie_soup.find('script', type='application/ld+json')
+                            if script_tag:
+                                match = re.search(r'"image"\s*:\s*"([^"]+)"', script_tag.string)
+                                if match:
+                                    poster_url = match.group(1)
+                            
+                            if poster_url == "https://via.placeholder.com/300x450?text=No+Poster":
+                                og_image = movie_soup.find('meta', property='og:image')
+                                if og_image and og_image.has_attr('content'):
+                                    poster_url = og_image['content']
+                    except:
+                        pass
                 
                 st.markdown("<br><br>", unsafe_allow_html=True)
                 
