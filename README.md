@@ -1,19 +1,41 @@
-# Hacktoberfest 2026: Build for a Friend
+# 🍿 Log It Already
 
-**Challenge:** Hacktoberfest Weekend Challenge (Oct 2 - Oct 5)
-**Theme:** Build for a Friend
-**Requirement:** Open-Source AI at its core
+For the cinephile with 500 movies in their watchlist and 45 minutes of decision paralysis. 
+"Log It Already" is a minimalist, AI-powered movie recommender built with a clean, high-contrast aesthetic. It scans your Letterboxd watchlist and uses AI to pick the absolute best movie for your current mood.
 
-## Project: Letterboxd Backlog Buster
-A standalone Web App built with Streamlit and Gemma 2 (9B) via Hugging Face.
+## Features
+* **Letterboxd Integration:** Automatically scrapes your public watchlist.
+* **Vibe Check:** Tell the AI exactly what you're in the mood for.
+* **Minimalist UI:** Clean, high-contrast, distraction-free design.
+* **Smart Fallback:** Don't have a watchlist? Leave it blank and the AI will recommend a global trending movie based on your mood.
 
-### Why Open Matters (For your DEV post):
-A cinephile's watchlist and viewing moods are deeply personal reflections of their mental state. Passing that data to a closed model means Big Tech is profiling their entertainment preferences to sell ads. Using an open-weight model like Gemma keeps their cinematic taste and personal moods completely private.
+## How to Run
 
-### Files in this folder:
-* `app.py`: The Streamlit application we wrote together.
-* `chat_transcript.jsonl`: The raw log of our entire brainstorming session (you can optionally embed snippets of this in your DEV post using DevRelay to show your process!).
+### Prerequisites
+1. Python 3.9+
+2. [Ollama](https://ollama.com/) (If running local models) or an Ollama Cloud API Key.
 
-### How to Run:
-1. `pip install streamlit huggingface_hub`
-2. `streamlit run app.py`
+### Installation
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/joyboy-8509/log-it-already.git
+   cd log-it-already
+   ```
+2. Install the required dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+3. Set your Ollama API key as an environment variable (or safely save it in a `saved_key.txt` file in the root directory):
+   ```bash
+   # On Windows (PowerShell)
+   $env:OLLAMA_API_KEY="your-api-key-here"
+   
+   # On Mac/Linux
+   export OLLAMA_API_KEY="your-api-key-here"
+   ```
+
+### Execution
+Run the app using Streamlit:
+```bash
+streamlit run app.py
+```
