@@ -3,6 +3,9 @@
 For the cinephile with 500 movies in their watchlist and 45 minutes of decision paralysis. 
 "Log It Already" is a minimalist, AI-powered movie recommender built with a clean, high-contrast aesthetic. It scans your Letterboxd watchlist and uses AI to pick the absolute best movie for your current mood.
 
+## My Current Top 4
+![My Current Top 4](assets/top4.png)
+
 ## Features
 * **Letterboxd Integration:** Automatically scrapes your public watchlist.
 * **Vibe Check:** Tell the AI exactly what you're in the mood for.
