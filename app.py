@@ -120,6 +120,19 @@ if os.path.exists(key_file_path):
 else:
     api_key = os.environ.get("OLLAMA_API_KEY", "")
 
+# First-time setup screen for friends who don't have the key configured
+if not api_key:
+    st.markdown("<div class='section-title'>First-Time Setup</div>", unsafe_allow_html=True)
+    st.markdown("<div class='about-text'>Welcome! To use Log It Already, you need an Ollama API key. Paste it below to save it securely to your machine. You only need to do this once!</div><br>", unsafe_allow_html=True)
+    
+    user_key = st.text_input("Ollama API Key:", type="password", placeholder="Paste your API key here...")
+    if st.button("Save Key & Start"):
+        if user_key:
+            with open(key_file_path, "w") as f:
+                f.write(user_key.strip())
+            st.rerun()
+    st.stop()  # Halt rendering the rest of the app until the key is provided
+
 st.markdown("<div class='section-title'>Your Watchlist (Optional)</div>", unsafe_allow_html=True)
 url = st.text_input(
     "Paste a Letterboxd List or Watchlist URL (Optional):", 
