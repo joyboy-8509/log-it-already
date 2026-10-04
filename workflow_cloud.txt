@@ -1,0 +1,36 @@
+### 🤖 What I have already done (The AI's Role)
+1. **Wrote the Cloud App:** I rewrote `app.py` in your folder to remove local inference and connect securely to Ollama's high-speed cloud API.
+2. **Environment Handling:** The code is designed to safely look for your API key in your system environment variables so you never accidentally upload it or expose it in the code.
+
+---
+
+### 🧑‍💻 What you need to do right now (Your Role)
+
+**Step 1: Get Your Free API Key**
+Since we are using Ollama's servers instead of your laptop's hardware, they need to know who you are.
+* Go to [https://ollama.com/settings/keys](https://ollama.com/settings/keys) and create a new API key.
+* Alternatively, run `ollama signin` in your terminal.
+* *Note: The Gemma 4 Cloud model is included on the free plan!*
+
+**Step 2: Add the Key to Your Terminal**
+Tell your computer to remember the key for this session. In PowerShell, run:
+```powershell
+$env:OLLAMA_API_KEY="paste_your_secret_key_here"
+```
+
+**Step 3: Install the Python Libraries**
+In your terminal, make sure you have `streamlit` and `requests` installed:
+```powershell
+pip install streamlit requests
+```
+
+**Step 4: Launch the App**
+Navigate to your project folder:
+```powershell
+cd C:\Users\kumaw\source_codes\gemini\disc_bot_hacktober_1.0
+```
+Start the web app:
+```powershell
+streamlit run app.py
+```
+*(The app will check for your key and tell you if it's connected!)*
